@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
+import RouteProvider from "./routes";
 import { Capacitor } from "@capacitor/core";
 import { CapacitorSQLite, SQLiteConnection } from "@capacitor-community/sqlite";
 import { JeepSqlite } from "jeep-sqlite/dist/components/jeep-sqlite";
+
+import "./index.css";
+import StoreProvider from "./stores";
 
 customElements.define("jeep-sqlite", JeepSqlite);
 
@@ -51,7 +53,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     ReactDOM.createRoot(document.getElementById("root")).render(
       <React.StrictMode>
-        <App />
+        <StoreProvider>
+          <RouteProvider />
+        </StoreProvider>
       </React.StrictMode>
     );
   } catch (err) {
